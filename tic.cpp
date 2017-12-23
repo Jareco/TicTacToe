@@ -253,7 +253,6 @@ int main(){
  cout << "Choice: ";
  cin >>number;
  f.setAnswer(pos, number);
- f.print();
  cout << endl;
  }while(true);
 
