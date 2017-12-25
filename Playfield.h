@@ -17,6 +17,14 @@ class Playfield{
 	 
   }
 
+  void setNumber(int i, int d, int number){
+	playfield[i][d]=number;
+  }
+
+  int getNumber(int i, int d){
+	  return playfield[i][d];
+  }
+
   void setAnswer(int pos, int number){
 	switch (pos) {
         case 11: playfield[0][0]=number; 
