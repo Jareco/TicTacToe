@@ -1,7 +1,7 @@
 #include<iostream>
 #include<string>
 #include "Playfield.h"
-#include "Computerplayer.h"
+#include "AI.h"
 using namespace std;
 int main(){
    int pos;
@@ -25,6 +25,11 @@ int main(){
 	     cout << "You won!" << endl;
 	     break;
       }
+      if(f.checkTie()){
+	      f.print();
+	      cout << "Tie!" << endl;
+	      break;
+      }
       f.print();
       cout << "Position: ";
       cin >> pos;
@@ -36,7 +41,7 @@ int main(){
      
    }else{
       cout << "Use only 1 for playing with computer." << endl;
-      Computerplayer cplayer(f);
+      AI cplayer(f);
       int indexplayer=0;
     
       do{
@@ -57,9 +62,26 @@ int main(){
         cin >> number;
         f.setAnswer(pos, number);
         indexplayer++;
+        win=f.checkWin();
+	if(win==true){
+	     f.print();
+	     cout << "Win!" << endl;
+	     break;
+        }
+        if(f.checkTie()){
+	      f.print();
+	      cout << "Tie!" << endl;
+	      break;
+        }
       }else{
-        cplayer.playHorizontal();
+        cplayer.play();
         indexplayer++;
+	if(win==true){
+	     f.print();
+	     cout << "Win!" << endl;
+	     break;
+        }
+		
       }
       
       }while(true);

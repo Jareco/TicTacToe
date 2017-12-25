@@ -5,6 +5,7 @@ using namespace std;
 class Playfield{
  private:
   int playfield[3][3];
+  char winner;
 
  
  public:
@@ -14,6 +15,8 @@ class Playfield{
 			  playfield[i][d]=2;
 		  }
 	  }  
+
+	  winner='N';
 	 
   }
 
@@ -27,35 +30,35 @@ class Playfield{
 
   void setAnswer(int pos, int number){
 	switch (pos) {
-        case 11: if(playfield[0][0]!=1 && playfield[0][0]!=0) 
+        case 11: if(playfield[0][0]==2) 
 		 playfield[0][0]=number; 
 		 break;
-        case 12: if(playfield[0][1]!=1 && playfield[0][1]!=0)
+        case 12: if(playfield[0][1]==2)
 		 playfield[0][1]=number; 
 		 break;
-        case 13: if(playfield[0][2]!=1 && playfield[0][2]!=0)
+        case 13: if(playfield[0][2]==2)
 		 playfield[0][2]=number; 
 		 break;
-        case 21: if(playfield[1][0]!=1 && playfield[1][0]!=0)
+        case 21: if(playfield[1][0]==2)
 		 playfield[1][0]=number; 
 	   	 break;
-        case 22: if(playfield[1][1]!=1 && playfield[1][1]!=0)
+        case 22: if(playfield[1][1]==2)
 		 playfield[1][1]=number;
 		 break;
 
-        case 23: if(playfield[1][2]!=1 && playfield[1][2]!=0)
+        case 23: if(playfield[1][2]==2)
 		 playfield[1][2]=number;
 		 break;
 
-        case 31: if(playfield[2][0]!=1 && playfield[2][0]!=0)
+        case 31: if(playfield[2][0]==2)
 		 playfield[2][0]=number; 
 		 break;
 
-        case 32: if(playfield[2][1]!=1 && playfield[2][1]!=0)
+        case 32: if(playfield[2][1]==2)
 		 playfield[2][1]=number; 
 		 break;
 
-        case 33: if(playfield[2][2]!=1 && playfield[2][2]!=0)
+        case 33: if(playfield[2][2]==2)
 		 playfield[2][2]=number; 
 		 break;
         default: cout << "Wrong position"<<endl;  
@@ -90,8 +93,14 @@ class Playfield{
 			  if(playfield[i][d]==1)
 				counter_1++;
 		  }
-		  if(counter_0==3) return true;
-		  if(counter_1==3) return true;
+		  if(counter_0==3){
+			  winner='C';
+			  return true;
+		  } 
+		  if(counter_1==3){
+			  winner='P';
+			  return true;
+		  } 
 		  counter_0=0;
 		  counter_1=0;
 	  }
@@ -110,8 +119,14 @@ class Playfield{
 			  if(playfield[d][i]==1)
 				counter_1++;
 		  }
-		  if(counter_0==3) return true;
-		  if(counter_1==3) return true;
+		  if(counter_0==3){
+			  winner='C';
+			  return true;
+		  } 
+		  if(counter_1==3){
+			  winner='P';
+			  return true;
+		  } 
 		  counter_0=0;
 		  counter_1=0;
 	  }
@@ -132,8 +147,14 @@ class Playfield{
 		 if(playfield[i][i]==0) counter_0++; 
 		 if(playfield[i][i]==1) counter_1++;
 	  }
-	  if(counter_0==3) return true;
-	  if(counter_1==3) return true;
+		  if(counter_0==3){
+			  winner='C';
+			  return true;
+		  } 
+		  if(counter_1==3){
+			  winner='P';
+			  return true;
+		  }
 	  counter_0=0;
 	  counter_1=0;
 
@@ -144,12 +165,19 @@ class Playfield{
 		  if(playfield[i][columnindex]==1) counter_1++;
 		  columnindex--;
 	  }
-	  if(counter_0==3) return true;
-	  if(counter_1==3) return true;
+		  if(counter_0==3){
+			  winner='C';
+			  return true;
+		  } 
+		  if(counter_1==3){
+			  winner='P';
+			  return true;
+		  }
 
 	  return false;
 
   }
+
 
   bool checkWin(){
 	  bool winresult=false;
@@ -161,6 +189,28 @@ class Playfield{
 	  if(winresult) return winresult;
 
 	  return winresult;
+  }
+
+  bool checkTie(){
+	  bool winResult=checkWin();
+	  if(winResult) return false;
+	  int counter=0; 
+	  for(int i=0; i<3; i++){
+		  for(int d=0; d<3; d++){
+			  if(playfield[i][d]!=2) counter++;
+		  }
+	  }
+	  if(counter==9) return true;
+
+
+	return false;	
+  }
+
+  char getWinner(){
+	  if(checkTie()) winner='T';
+	  char returnwinner=winner;
+	  winner='N';
+	  return returnwinner;
   }
 
 
