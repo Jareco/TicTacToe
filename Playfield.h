@@ -27,27 +27,36 @@ class Playfield{
 
   void setAnswer(int pos, int number){
 	switch (pos) {
-        case 11: playfield[0][0]=number; 
+        case 11: if(playfield[0][0]!=1 && playfield[0][0]!=0) 
+		 playfield[0][0]=number; 
 		 break;
-        case 12: playfield[0][1]=number; 
+        case 12: if(playfield[0][1]!=1 && playfield[0][1]!=0)
+		 playfield[0][1]=number; 
 		 break;
-        case 13: playfield[0][2]=number; 
+        case 13: if(playfield[0][2]!=1 && playfield[0][2]!=0)
+		 playfield[0][2]=number; 
 		 break;
-        case 21: playfield[1][0]=number; 
+        case 21: if(playfield[1][0]!=1 && playfield[1][0]!=0)
+		 playfield[1][0]=number; 
 	   	 break;
-        case 22: playfield[1][1]=number;
+        case 22: if(playfield[1][1]!=1 && playfield[1][1]!=0)
+		 playfield[1][1]=number;
 		 break;
 
-        case 23: playfield[1][2]=number;
+        case 23: if(playfield[1][2]!=1 && playfield[1][2]!=0)
+		 playfield[1][2]=number;
 		 break;
 
-        case 31: playfield[2][0]=number; 
+        case 31: if(playfield[2][0]!=1 && playfield[2][0]!=0)
+		 playfield[2][0]=number; 
 		 break;
 
-        case 32: playfield[2][1]=number; 
+        case 32: if(playfield[2][1]!=1 && playfield[2][1]!=0)
+		 playfield[2][1]=number; 
 		 break;
 
-        case 33: playfield[2][2]=number; 
+        case 33: if(playfield[2][2]!=1 && playfield[2][2]!=0)
+		 playfield[2][2]=number; 
 		 break;
         default: cout << "Wrong position"<<endl;  
     }

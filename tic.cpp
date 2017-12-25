@@ -12,6 +12,7 @@ int main(){
    cout << "You should choose the position, where you can set you answer." << endl;
    cout << "Play with number 1 or 0." << endl;
    cout << "Play against computer: 'c' or play against player: 'p'" << endl;
+   cout << "Player or Computer: ";
    cin >> choice; 
    
    
@@ -34,6 +35,7 @@ int main(){
       }while(true);
      
    }else{
+      cout << "Use only 1 for playing with computer." << endl;
       Computerplayer cplayer(f);
       int indexplayer=0;
     
