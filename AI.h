@@ -15,7 +15,7 @@ class AI{
    };
 	const char computer='C';
 	const char player='P';
-
+	const char tie='T';
 	Playfield *f;
 
 
@@ -40,7 +40,7 @@ class AI{
 			return Move(10);	
 		 }else if(winner==player){
 			 return Move(-10);
-		 }else if(winner=='T'){
+		 }else if(winner==tie){
 			 return Move(0);
 		 }
 		
