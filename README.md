@@ -1,5 +1,5 @@
 # TicTacToe
-It's a simple tic tac toe game, which is implemented using c++ and minimax algorithm for AI. 
+Artificial Intellegence. It's a simple tic tac toe game, which is implemented using c++ and minimax algorithm for AI. 
 You can play this game with a partner and with a computer. 
 At the beginning of the game, you can decide about your opponent.
 When the program asks, just type c or p.
