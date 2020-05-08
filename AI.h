@@ -38,12 +38,12 @@ public:
 
 		//Recursion. Put moves in the vector
 		std::vector<Move> moves;
-		for (int i = 0; i < field->getColumns(); i++) {
-			for (int d = 0; d < field->getRows(); d++) {
+		for (int i = 0; i < field->getRows(); i++) {
+			for (int d = 0; d < field->getColumns(); d++) {
 				if (field->isPositionFree(i, d)) {
 					Move move;
-					move.column = i;
-					move.row = d;
+					move.row = i;
+					move.column = d;
 					field->setPlayChoise(i, d, playChoise);
 					if (playChoise == playFieldPossibilities::O) {
 						move.score = findMove(playFieldPossibilities::X).score;
