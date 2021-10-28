@@ -8,8 +8,7 @@ private:
 	InputMoveParser moveParser;
 
 public:
-
-	Game(){}
+	Game() {}
 
 	void start()
 	{
@@ -17,14 +16,15 @@ public:
 		char choice;
 		cin >> choice;
 
-		if (choice == 'p') {
+		if (choice == 'p')
+		{
 			playAgainstHuman();
 		}
-		else {
+		else
+		{
 			playAgainstComputer();
 		}
 	}
-
 
 	void printPlayingInformation()
 	{
@@ -36,14 +36,17 @@ public:
 
 	void playAgainstHuman()
 	{
-		do {
+		do
+		{
 			win = field.checkWin();
-			if (win == true) {
+			if (win == true)
+			{
 				field.print();
 				cout << "You won!" << endl;
 				break;
 			}
-			if (field.checkTie()) {
+			if (field.checkTie())
+			{
 				field.print();
 				cout << "Tie!" << endl;
 				break;
@@ -65,17 +68,19 @@ public:
 		AI computerPlayer(field);
 		int indexOfPlayer = 0;
 
-		do {
+		do
+		{
 
 			win = field.checkWin();
-			if (win == true) {
+			if (win == true)
+			{
 				field.print();
 				cout << "Win!" << endl;
 				break;
 			}
 
-
-			if (indexOfPlayer % 2 == 0) {
+			if (indexOfPlayer % 2 == 0)
+			{
 				field.print();
 				cout << "Position: ";
 				cin >> movePosition;
@@ -85,29 +90,31 @@ public:
 				field.doMove(moveToDo);
 				indexOfPlayer++;
 				win = field.checkWin();
-				if (win == true) {
+				if (win == true)
+				{
 					field.print();
 					cout << "Win!" << endl;
 					break;
 				}
-				if (field.checkTie()) {
+				if (field.checkTie())
+				{
 					field.print();
 					cout << "Tie!" << endl;
 					break;
 				}
 			}
-			else {
+			else
+			{
 				computerPlayer.play();
 				indexOfPlayer++;
-				if (win == true) {
+				if (win == true)
+				{
 					field.print();
 					cout << "Win!" << endl;
 					break;
 				}
-
 			}
 
 		} while (true);
 	}
-
 };

@@ -2,10 +2,12 @@ class InputMoveParser
 {
 private:
 	int inputMove;
-	const static enum playFieldPossibilities { X, O, Empty };
+	const static enum playFieldPossibilities { X,
+											   O,
+											   Empty };
 
 public:
-	InputMoveParser(){}
+	InputMoveParser() {}
 
 	Move parse(int movePosition, int inputMove)
 	{

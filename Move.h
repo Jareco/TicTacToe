@@ -1,4 +1,5 @@
-struct Move {
+struct Move
+{
 	int column;
 	int row;
 	int choise;
@@ -10,8 +11,8 @@ struct Move {
 		this->row = row;
 		this->choise = choise;
 	}
-	Move(int score) {
+	Move(int score)
+	{
 		this->score = score;
 	}
-
 };

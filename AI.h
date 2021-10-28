@@ -1,54 +1,65 @@
 #include <vector>
 #include <iostream>
 using namespace std;
-class AI {
+class AI
+{
 private:
 	const char computer = 'C';
 	const char player = 'P';
 	const char tie = 'T';
-	const static enum playFieldPossibilities { O, X, Empty };
+	const static enum playFieldPossibilities { O,
+											   X,
+											   Empty };
 	Playfield *field;
 
-
 public:
-
-	AI(Playfield&  field) {
+	AI(Playfield &field)
+	{
 		this->field = &field;
 	}
 
-	void play() {
+	void play()
+	{
 		Move bestMove = findMove(playFieldPossibilities::O);
 		bestMove.choise = playFieldPossibilities::O;
 		field->doMove(bestMove);
 	}
 
-	Move findMove(int playChoise) {
+	Move findMove(int playChoise)
+	{
 		char winner = field->getWinner();
 		//Break condition
-		if (winner == computer) {
+		if (winner == computer)
+		{
 			return Move(10);
 		}
-		else if (winner == player) {
+		else if (winner == player)
+		{
 			return Move(-10);
 		}
-		else if (winner == tie) {
+		else if (winner == tie)
+		{
 			return Move(0);
 		}
 
-
 		//Recursion. Put moves in the vector
 		std::vector<Move> moves;
-		for (int i = 0; i < field->getRows(); i++) {
-			for (int d = 0; d < field->getColumns(); d++) {
-				if (field->isPositionFree(i, d)) {
+		for (int i = 0; i < field->getRows(); i++)
+		{
+			for (int d = 0; d < field->getColumns(); d++)
+			{
+				if (field->isPositionFree(i, d))
+				{
 					Move move;
 					move.row = i;
 					move.column = d;
 					field->setPlayChoise(i, d, playChoise);
-					if (playChoise == playFieldPossibilities::O) {
+					if (playChoise == playFieldPossibilities::O)
+					{
 						move.score = findMove(playFieldPossibilities::X).score;
 					}
-					else {
+					else
+					{
 						move.score = findMove(playFieldPossibilities::O).score;
 					}
 
@@ -59,28 +70,31 @@ public:
 			}
 		}
 
-
-		//The best move 
+		//The best move
 		int bestmove = 0;
-		if (playChoise == playFieldPossibilities::O) {
+		if (playChoise == playFieldPossibilities::O)
+		{
 			int bestScore = -1000000;
-			for (int i = 0; i < moves.size(); i++) {
-				if (moves[i].score > bestScore) {
+			for (int i = 0; i < moves.size(); i++)
+			{
+				if (moves[i].score > bestScore)
+				{
 					bestmove = i;
 					bestScore = moves[i].score;
 				}
 			}
-
 		}
-		else {
+		else
+		{
 			int bestScore = 1000000;
-			for (int i = 0; i < moves.size(); i++) {
-				if (moves[i].score < bestScore) {
+			for (int i = 0; i < moves.size(); i++)
+			{
+				if (moves[i].score < bestScore)
+				{
 					bestmove = i;
 					bestScore = moves[i].score;
 				}
 			}
-
 		}
 
 		return moves[bestmove];
